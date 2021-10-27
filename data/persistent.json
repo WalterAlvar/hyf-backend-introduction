@@ -12,6 +12,10 @@
     {
       "name": "Hockey!",
       "id": "611416fac2fc000000000001"
+    },
+    {
+      "id": "61797b3d222cb55c27000001",
+      "name": "NewChannelTest"
     }
   ],
   "messages": [
@@ -70,6 +74,13 @@
       "user": "Yoshi",
       "channelId": "611416fac2fc000000000001",
       "date": "2021-08-11T18:37:22.212Z"
+    },
+    {
+      "text": "Hey!",
+      "id": "61797b46222cb55c27000002",
+      "user": "walter",
+      "channelId": "61797b3d222cb55c27000001",
+      "date": "2021-10-27T16:16:06.070Z"
     }
   ]
 }
