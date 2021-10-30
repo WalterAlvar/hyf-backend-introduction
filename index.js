@@ -27,6 +27,26 @@ app.get('/files/:name', async (req, res) => {
   }
 });
 
+// create file
+// POST
+app.post('/files/:name', async (req, res) => {
+  const path = `./files/${req.params.name}.txt`;
+  if (fs.existsSync(path)) {
+    res
+      .status(409)
+      .send({ ok: false, message: 'file with that name already exists!' });
+    return;
+  }
+  try {
+    await write(path, req.body);
+    res.send({ ok: true, message: `file ${path} created successfully` });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ ok: false, message: 'error writing file', err: error });
+  }
+});
+
 // update a file
 // PUT
 app.put('/files/:name', async (req, res) => {
@@ -46,6 +66,8 @@ app.put('/files/:name', async (req, res) => {
       .send({ ok: false, message: 'error writing file', err: error });
   }
 });
+
+app.listen(3000);
 
 app.use(
   morgan('combined', {
