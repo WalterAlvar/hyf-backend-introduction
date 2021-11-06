@@ -1,21 +1,20 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-
 const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const cors = require('cors');
-
-const api = require('./api');
-const config = require('./config');
 
 const app = express();
+const fs = require('fs');
+const util = require('util');
 
-app.use(cors());
-app.use(bodyParser.json());
+const read = util.promisify(fs.readFile);
+const write = util.promisify(fs.writeFile);
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.text());
+const logger = require('../middleware/logger');
+
+// middleware
+
+app.use(logger);
+console.log(logger);
 // read a file -- /files/tim --> tim.txt
 // GET
 app.get('/files/:name', async (req, res) => {
